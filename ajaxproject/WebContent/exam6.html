@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+	$(document).ready(function() {
+		$.ajax({
+			url: "studentScore.json",
+			dataType: "json",
+			success: function(result, status, xhr) {
+				console.log(result)
+				var datas = result;
+				var $tag = "<table border=1><caption>:::: Employee Lists ::::</caption>";
+				$tag += "<tr><th>Id</th><th>Name</th><th>PHone</th><th>email</th></tr>";
+				for (var i = 0; i < datas.length; i++) {
+					$tag += "<tr><td>" + datas[i].customer_no 
+					     + "</td><td>" + datas[i].name 
+					     + "</td><td>" + datas[i].phone 
+					     + "</td><td>" + datas[i].email 
+					     + "</td><td>" + datas[i].gender
+					     + "</td></tr>";
+				}
+				$tag += "</table>";
+				$("#show").html($tag);
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+			}
+		});
+		
+	});
+    </script>
+</head>
+<body>
+    <p id="show"></p>
+</body>
+</html>
