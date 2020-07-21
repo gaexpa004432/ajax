@@ -5,6 +5,17 @@ public class Employee {
 	String firstName;
 	String email;
 	int Salary;
+	public Employee(String firstName, String lastName, String email, String jobId, String hireDate,
+			int salary) {
+		super();
+		
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.jobId = jobId;
+		this.hireDate = hireDate;
+		Salary = salary;
+	}
 	String hireDate,lastName,jobId;
 	public String getHireDate() {
 		return hireDate;

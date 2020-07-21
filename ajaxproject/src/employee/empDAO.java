@@ -134,6 +134,7 @@ public void insertEmp(Employee emp){
 		String sql = "update employees set salary ="+salary+" where employee_id ="+empId;
 		
 		try {
+			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			int r = pstmt.executeUpdate();
 			System.out.println(r);
@@ -154,5 +155,26 @@ public void insertEmp(Employee emp){
 		
 		
 	}
-	
+	public List<Employee> getSelect(){
+		conn = getConnect();
+		String sql = "select employee_id, first_name,last_name ,email ,job_id ,hire_date, salary from employees";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet r = pstmt.executeQuery();
+			List<Employee> list = new ArrayList<>();
+			
+			while(r.next()) {
+				Employee emp = new Employee(
+						r.getString("first_name"),r.getString("last_name"),r.getString("email"),r.getString("job_id"),r.getString("hire_date"),r.getInt("salary"));
+				list.add(emp);
+				
+			}
+			return list;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
